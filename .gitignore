@@ -1,0 +1,7 @@
+
+*.pkl
+*.log
+__pycache__/
+*.pyc
+.env
+data/blacklist.txt

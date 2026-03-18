@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 380px;
+      min-height: 400px;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1f6feb, #388bfd);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header h1 {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .header p {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    .status-bar {
+      padding: 10px 20px;
+      background: #161b22;
+      border-bottom: 1px solid #30363d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .dot-green { background: #3fb950; }
+    .dot-red { background: #f85149; }
+    .dot-gray { background: #8b949e; }
+
+    .section {
+      padding: 16px 20px;
+      border-bottom: 1px solid #21262d;
+    }
+
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #8b949e;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .alert-card {
+      background: #1c2128;
+      border: 1px solid #f8514933;
+      border-left: 3px solid #f85149;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+
+    .alert-ip {
+      color: #f85149;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .alert-time {
+      color: #8b949e;
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .alert-explanation {
+      color: #c9d1d9;
+      font-size: 11px;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 8px;
+      margin-right: 6px;
+    }
+
+    .btn-red {
+      background: #da3633;
+      color: white;
+    }
+
+    .btn-gray {
+      background: #21262d;
+      color: #c9d1d9;
+      border: 1px solid #30363d;
+    }
+
+    .no-alerts {
+      text-align: center;
+      padding: 20px;
+      color: #3fb950;
+      font-size: 13px;
+    }
+
+    .refresh-btn {
+      width: calc(100% - 40px);
+      margin: 12px 20px;
+      padding: 8px;
+      background: #21262d;
+      color: #c9d1d9;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .refresh-btn:hover { background: #30363d; }
+
+    .stats {
+      display: flex;
+      gap: 10px;
+    }
+
+    .stat-box {
+      flex: 1;
+      background: #1c2128;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 22px;
+      font-weight: 700;
+      color: #388bfd;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: #8b949e;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <h1>🔒 Malicious Traffic Detector</h1>
+      <p>AI-Powered Network Security Monitor</p>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <div id="statusText">
+      <span class="status-dot dot-gray"></span>Checking...
+    </div>
+    <div id="lastChecked" style="color:#8b949e">--</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Statistics</div>
+    <div class="stats">
+      <div class="stat-box">
+        <div class="stat-number" id="totalAlerts">0</div>
+        <div class="stat-label">Total Alerts</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" id="totalBlocked">0</div>
+        <div class="stat-label">IPs Blocked</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Recent Alerts</div>
+    <div id="alertsList">
+      <div class="no-alerts">✅ No threats detected</div>
+    </div>
+  </div>
+
+  <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>
